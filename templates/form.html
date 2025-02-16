@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Feedback Form</title>
+</head>
+<body>
+    <h2>FMB Thaali Feedback Form</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p style="color: {% if category == 'danger' %}red{% else %}green{% endif %};">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form method="POST">
+        <label>Thaali Number:</label>
+        <input type="number" name="thaali_number" required><br>
+
+        <label>Email:</label>
+        <input type="email" name="email"><br>
+
+        <label>Date of Feedback:</label>
+        <input type="date" name="date_of_feedback" required min="{{ yesterday }}" max="{{ today }}"><br>
+
+        <label>Feedback:</label>
+        <textarea name="feedback" required></textarea><br>
+
+        <button type="submit">Submit Feedback</button>
+    </form>
+</body>
+</html>
