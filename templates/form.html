@@ -2,30 +2,34 @@
 <html lang="en">
 <head>
     <title>Feedback Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
-<body>
-    <h2>FMB Thaali Feedback Form</h2>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <p style="color: {% if category == 'danger' %}red{% else %}green{% endif %};">{{ message }}</p>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-    <form method="POST">
-        <label>Thaali Number:</label>
-        <input type="number" name="thaali_number" required><br>
-
-        <label>Email:</label>
-        <input type="email" name="email"><br>
-
-        <label>Date of Feedback:</label>
-        <input type="date" name="date_of_feedback" required min="{{ yesterday }}" max="{{ today }}"><br>
-
-        <label>Feedback:</label>
-        <textarea name="feedback" required></textarea><br>
-
-        <button type="submit">Submit Feedback</button>
+<body class="container mt-5">
+    <h2 class="mb-4">FMB Thaali Feedback</h2>
+    <form method="POST" class="border p-4 rounded shadow">
+        
+        <label class="form-label">Thaali Number:</label>
+        <input type="number" name="thaali_number" class="form-control" required>
+        
+        <label class="form-label mt-3">Email Address:</label>
+        <input type="email" name="email" class="form-control" required>
+        
+        <label class="form-label mt-3">Thaali Date:</label>
+        <input type="date" name="date_of_feedback" class="form-control" required>
+        
+        <label class="form-label mt-3">Overall Rating:</label>
+        <div class="d-flex align-items-center gap-3">
+            <input type="radio" name="rating" value="1" required> <img src="poor.png" alt="1-Poor" width="40">
+            <input type="radio" name="rating" value="2"> <img src="fair.png" alt="2-Fair" width="40">
+            <input type="radio" name="rating" value="3"> <img src="good.png" alt="3-Good" width="40">
+            <input type="radio" name="rating" value="4"> <img src="very_good.png" alt="4-Very Good" width="40">
+            <input type="radio" name="rating" value="5"> <img src="excellent.png" alt="5-Excellent" width="40">
+        </div>
+        
+        <label class="form-label mt-3">Feedback/Comments:</label>
+        <textarea name="feedback" class="form-control" rows="4"></textarea>
+        
+        <button type="submit" class="btn btn-primary mt-4">Submit Feedback</button>
     </form>
 </body>
 </html>

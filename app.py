@@ -40,13 +40,12 @@ def feedback_form():
         thaali_number = request.form["thaali_number"]
         email = request.form["email"]
         feedback_date = datetime.strptime(request.form["date_of_feedback"], "%Y-%m-%d").date()
+        rating = request.form.get("rating")  # Get the overall rating
 
         if feedback_date not in [today, yesterday]:
             flash("Invalid date! You can only submit feedback for today or yesterday.", "danger")
             return redirect("/")
 
-        start_time = request.form.get("start_time")
-        completion_time = request.form.get("completion_time")
         feedback_text = request.form["feedback"]
 
         submitted_email = "ynv786@gmail.com"  # Replace with actual login email
@@ -56,9 +55,8 @@ def feedback_form():
             email=email,
             submitted_email=submitted_email,
             date_of_feedback=feedback_date,
-            start_time=start_time,
-            completion_time=completion_time,
-            feedback=feedback_text
+            feedback=feedback_text,
+            rating=rating  # Store rating in the database
         )
         db.session.add(new_feedback)
         db.session.commit()
@@ -66,6 +64,7 @@ def feedback_form():
         return redirect("/")
 
     return render_template("form.html", today=today, yesterday=yesterday)
+
 
 # Admin Login Route
 @app.route("/login", methods=["GET", "POST"])
