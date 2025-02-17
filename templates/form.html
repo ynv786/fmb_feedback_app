@@ -8,6 +8,12 @@
     <h2 class="mb-4">FMB Thaali Feedback</h2>
     <form method="POST" class="border p-4 rounded shadow">
         
+        <label class="form-label mt-3">Thaali Number:</label>
+        <input type="number" name="thaali_number" class="form-control" min="1" required>
+                 
+        <label class="form-label mt-3">Email Address:</label>
+        <input type="email" name="email" class="form-control" required>
+        
         <label class="form-label mt-3">Thaali Date:</label>
         <input type="date" name="date_of_feedback" id="date_of_feedback" class="form-control" required>
         <script>
@@ -25,13 +31,7 @@
                 dateInput.value = todayStr;
             });
         </script>
-                
-        <label class="form-label mt-3">Email Address:</label>
-        <input type="email" name="email" class="form-control" required>
-        
-        <label class="form-label mt-3">Thaali Date:</label>
-        <input type="date" name="date_of_feedback" class="form-control" required>
-        
+
         <label class="form-label mt-3">Overall Rating:</label>
         <div class="d-flex align-items-center gap-3">
             <input type="radio" name="rating" value="1" required> <img src="/static/images/hate.png" alt="1-Hate" width="50">
