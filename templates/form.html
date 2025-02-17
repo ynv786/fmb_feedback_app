@@ -8,9 +8,24 @@
     <h2 class="mb-4">FMB Thaali Feedback</h2>
     <form method="POST" class="border p-4 rounded shadow">
         
-        <label class="form-label">Thaali Number:</label>
-        <input type="number" name="thaali_number" class="form-control" required>
+        <label class="form-label mt-3">Thaali Date:</label>
+        <input type="date" name="date_of_feedback" id="date_of_feedback" class="form-control" required>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                let today = new Date();
+                let yesterday = new Date();
+                yesterday.setDate(today.getDate() - 1);
         
+                let todayStr = today.toISOString().split("T")[0];
+                let yesterdayStr = yesterday.toISOString().split("T")[0];
+        
+                let dateInput = document.getElementById("date_of_feedback");
+                dateInput.setAttribute("max", todayStr);
+                dateInput.setAttribute("min", yesterdayStr);
+                dateInput.value = todayStr;
+            });
+        </script>
+                
         <label class="form-label mt-3">Email Address:</label>
         <input type="email" name="email" class="form-control" required>
         
@@ -19,13 +34,11 @@
         
         <label class="form-label mt-3">Overall Rating:</label>
         <div class="d-flex align-items-center gap-3">
-            <input type="radio" name="rating" value="1" required> <img src="poor.png" alt="1-Poor" width="40">
-            <input type="radio" name="rating" value="2"> <img src="fair.png" alt="2-Fair" width="40">
-            <input type="radio" name="rating" value="3"> <img src="good.png" alt="3-Good" width="40">
-            <input type="radio" name="rating" value="4"> <img src="very_good.png" alt="4-Very Good" width="40">
-            <input type="radio" name="rating" value="5"> <img src="excellent.png" alt="5-Excellent" width="40">
+            <input type="radio" name="rating" value="1" required> <img src="/static/images/hate.png" alt="1-Hate" width="50">
+            <input type="radio" name="rating" value="2"> <img src="/static/images/neutral.png" alt="2-Neutral" width="50">
+            <input type="radio" name="rating" value="3"> <img src="/static/images/love.png" alt="3-Love" width="50">
         </div>
-        
+                
         <label class="form-label mt-3">Feedback/Comments:</label>
         <textarea name="feedback" class="form-control" rows="4"></textarea>
         
